@@ -1,0 +1,39 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('jagu/import') ?>"><?= e(trans('jagu.import::lang.plugin.name')) ?></a></li>
+</ul>
+<?php Block::endPut() ?>
+
+<h2><?= Lang::get('jagu.import::lang.backend.import') ?></h2>
+
+<div class="form-group span-full">
+    <?= Form::open(['files' => true]) ?>
+    <!-- File -->
+    <div class="form-group span-full is-required">
+        <?= Form::label('theme_zip', Lang::get('jagu.import::lang.backend.theme_zip')) ?>
+        <?= Form::file('theme_zip', $attributes = ['class' => 'form-control']) ?>
+        <p class="help-block"><?= Lang::get('jagu.import::lang.backend.theme_zip_hint') ?></p>
+    </div>
+    <!-- Switch -->
+    <div class="form-group span-full">
+        <div class="form-group switch-field span-full">
+            <div class="field-switch">
+                <label><?= Lang::get('jagu.import::lang.backend.replace_static_pages_content') ?></label>
+                <p class="help-block"><?= Lang::get('jagu.import::lang.backend.replace_static_pages_content_hint') ?></p>
+            </div>
+            <label class="custom-switch">
+                <input type="checkbox" name="replace_static_pages_content"/>
+                <span>
+                    <span><?= Lang::get('jagu.import::lang.backend.yes') ?></span>
+                    <span><?= Lang::get('jagu.import::lang.backend.no') ?></span>
+                </span>
+                <a class="slide-button"></a>
+            </label>
+        </div>
+    </div>
+    <!-- Submit -->
+    <div class="form-group span-full">
+        <?= Form::submit(Lang::get('jagu.import::lang.button.import'), $attributes = ['class' => 'btn btn-primary']) ?>
+    </div>
+    <?= Form::close() ?>
+</div>

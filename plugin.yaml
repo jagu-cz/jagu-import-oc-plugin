@@ -1,0 +1,6 @@
+plugin:
+    name: 'jagu.import::lang.plugin.name'
+    description: 'jagu.import::lang.plugin.description'
+    author: 'Jagu s.r.o.'
+    icon: oc-icon-upload
+    homepage: 'https://jagu.cz'
