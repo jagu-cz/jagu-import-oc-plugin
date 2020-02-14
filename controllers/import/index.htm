@@ -14,7 +14,24 @@
         <?= Form::file('theme_zip', $attributes = ['class' => 'form-control']) ?>
         <p class="help-block"><?= Lang::get('jagu.import::lang.backend.theme_zip_hint') ?></p>
     </div>
-    <!-- Switch -->
+    <!-- Remove all existing files switch -->
+    <div class="form-group span-full">
+        <div class="form-group switch-field span-full">
+            <div class="field-switch">
+                <label><?= Lang::get('jagu.import::lang.backend.remove_all_existing_files') ?></label>
+                <p class="help-block"><?= Lang::get('jagu.import::lang.backend.remove_all_existing_files_hint') ?></p>
+            </div>
+            <label class="custom-switch">
+                <input type="checkbox" name="remove_all_existing_files"/>
+                <span>
+                    <span><?= Lang::get('jagu.import::lang.backend.yes') ?></span>
+                    <span><?= Lang::get('jagu.import::lang.backend.no') ?></span>
+                </span>
+                <a class="slide-button"></a>
+            </label>
+        </div>
+    </div>
+    <!-- Replace RainLab.Pages content switch -->
     <div class="form-group span-full">
         <div class="form-group switch-field span-full">
             <div class="field-switch">

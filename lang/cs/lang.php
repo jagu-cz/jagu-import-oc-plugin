@@ -12,6 +12,8 @@
         'theme_zip_hint' => 'Zazipovaný soubor s šablonou pro October CMS',
         'replace_static_pages_content' => 'Nahradit soubory, které jsou generovány pomocí Rainlab.Pages pluginu',
         'replace_static_pages_content_hint' => 'Zapněte tuto možnost, pokud si přejete přepsat všechny soubory, které jsou generovány pluginem Rainlab.Pages, jako jsou statické stránky, statické menu, atd.',
+        'remove_all_existing_files' => 'Odstranit všechny původní soubory',
+        'remove_all_existing_files_hint' => 'Před nahráním souborů šablony budou nejdříve všechny původní soubory odebrány',
         'yes' => 'Ano',
         'no' => 'Ne',
         'flash' => [

@@ -4,6 +4,7 @@ namespace Jagu\Import\Controllers;
 
 use BackendMenu;
 use File;
+use FilesystemIterator;
 use Flash;
 use Input;
 use Lang;
@@ -17,7 +18,8 @@ class Import extends \Backend\Classes\Controller
     public $requiredPermissions = ['jagu.import.import'];
 
     private const FILE_NAME = 'theme_zip';
-    private const SWITCH_NAME = 'replace_static_pages_content';
+    private const REMOVE_ALL_EXISTING_FILES_SWITCH_NAME = 'remove_all_existing_files';
+    private const EXCLUDE_STATIC_CONTENT_SWITCH_NAME = 'replace_static_pages_content';
 
     public function __construct()
     {
@@ -31,9 +33,10 @@ class Import extends \Backend\Classes\Controller
     {
         $this->cleanUpTemp();
 
+        // replace RainLab.Pages files?
         $blacklistFiles = [];
         $blacklistDirs = [];
-        if (Input::get(self::SWITCH_NAME) === null) {
+        if (Input::get(self::EXCLUDE_STATIC_CONTENT_SWITCH_NAME) === null) {
             $blacklistFiles = [
                 'meta/static-pages.yaml'
             ];
@@ -50,7 +53,6 @@ class Import extends \Backend\Classes\Controller
                 return;
             }
 
-            $originalName = Input::file(self::FILE_NAME)->getClientOriginalName();
             $extension = Input::file(self::FILE_NAME)->getClientOriginalExtension();
 
             if ($extension !== 'zip') {
@@ -85,6 +87,15 @@ class Import extends \Backend\Classes\Controller
             // create theme directory if not exists
             if (!file_exists('themes/' . $themeDir)) {
                 mkdir('themes/' . $themeDir, 0777, true);
+            } else {
+                // remove all existing files?
+                if (Input::get(self::REMOVE_ALL_EXISTING_FILES_SWITCH_NAME) !== null) {
+                    $di = new RecursiveDirectoryIterator('themes/' . $themeDir, FilesystemIterator::SKIP_DOTS);
+                    $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
+                    foreach ($ri as $file) {
+                        $file->isDir() ? rmdir($file) : unlink($file);
+                    }
+                }
             }
 
             // copy all files except ones on blacklists
