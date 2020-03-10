@@ -82,8 +82,6 @@ class ImportPlugin extends \Backend\Classes\Controller
 
             $pluginDir = array_pop($pluginDir);
 
-            debug($pluginDir);
-
             // remove all existing plugin files
             try {
                 $di = new RecursiveDirectoryIterator('plugins/' . $authorDir . '/' . $pluginDir, FilesystemIterator::SKIP_DOTS);
