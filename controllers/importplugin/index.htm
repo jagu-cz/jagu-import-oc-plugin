@@ -1,0 +1,23 @@
+<?php Block::put('breadcrumb') ?>
+<ul>
+    <li><a href="<?= Backend::url('jagu/import/importplugin') ?>"><?= e(trans('jagu.import::lang.plugin.import_plugin')) ?></a>
+    </li>
+</ul>
+<?php Block::endPut() ?>
+
+<h2><?= Lang::get('jagu.import::lang.backend.import_plugin') ?></h2>
+
+<div class="form-group span-full">
+    <?= Form::open(['files' => true]) ?>
+    <!-- File -->
+    <div class="form-group span-full is-required">
+        <?= Form::label('plugin_zip', Lang::get('jagu.import::lang.backend.plugin_zip')) ?>
+        <?= Form::file('plugin_zip', $attributes = ['class' => 'form-control']) ?>
+        <p class="help-block"><?= Lang::get('jagu.import::lang.backend.plugin_zip_hint') ?></p>
+    </div>
+    <!-- Submit -->
+    <div class="form-group span-full">
+        <?= Form::submit(Lang::get('jagu.import::lang.button.import'), $attributes = ['class' => 'btn btn-primary']) ?>
+    </div>
+    <?= Form::close() ?>
+</div>

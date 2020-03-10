@@ -1,10 +1,10 @@
 <?php Block::put('breadcrumb') ?>
 <ul>
-    <li><a href="<?= Backend::url('jagu/import') ?>"><?= e(trans('jagu.import::lang.plugin.name')) ?></a></li>
+    <li><a href="<?= Backend::url('jagu/import/importtheme') ?>"><?= e(trans('jagu.import::lang.plugin.import_theme')) ?></a></li>
 </ul>
 <?php Block::endPut() ?>
 
-<h2><?= Lang::get('jagu.import::lang.backend.import') ?></h2>
+<h2><?= Lang::get('jagu.import::lang.backend.import_theme') ?></h2>
 
 <div class="form-group span-full">
     <?= Form::open(['files' => true]) ?>

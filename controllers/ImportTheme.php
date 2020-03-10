@@ -13,7 +13,7 @@ use RecursiveIteratorIterator;
 use System\Classes\SettingsManager;
 use ZipArchive;
 
-class Import extends \Backend\Classes\Controller
+class ImportTheme extends \Backend\Classes\Controller
 {
     public $requiredPermissions = ['jagu.import.import'];
 
@@ -24,9 +24,9 @@ class Import extends \Backend\Classes\Controller
     public function __construct()
     {
         parent::__construct();
-        BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('Jagu.Import', 'settings');
-        $this->pageTitle = Lang::get('jagu.import::lang.plugin.name');
+        BackendMenu::setContext('October.System', 'system', 'import_theme');
+        SettingsManager::setContext('Jagu.Import', 'import_theme');
+        $this->pageTitle = Lang::get('jagu.import::lang.plugin.import_theme');
     }
 
     public function index()
@@ -90,10 +90,14 @@ class Import extends \Backend\Classes\Controller
             } else {
                 // remove all existing files?
                 if (Input::get(self::REMOVE_ALL_EXISTING_FILES_SWITCH_NAME) !== null) {
-                    $di = new RecursiveDirectoryIterator('themes/' . $themeDir, FilesystemIterator::SKIP_DOTS);
-                    $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
-                    foreach ($ri as $file) {
-                        $file->isDir() ? rmdir($file) : unlink($file);
+                    try {
+                        $di = new RecursiveDirectoryIterator('themes/' . $themeDir, FilesystemIterator::SKIP_DOTS);
+                        $ri = new RecursiveIteratorIterator($di, RecursiveIteratorIterator::CHILD_FIRST);
+                        foreach ($ri as $file) {
+                            $file->isDir() ? rmdir($file) : unlink($file);
+                        }
+                    } catch (\Throwable $exception) {
+                        // do nothing, exception indicates that theme is imported for the first time
                     }
                 }
             }
@@ -136,7 +140,7 @@ class Import extends \Backend\Classes\Controller
             // delete temporary directories
             $this->cleanUpTemp();
 
-            Flash::success(Lang::get('jagu.import::lang.backend.flash.success'));
+            Flash::success(Lang::get('jagu.import::lang.backend.flash.theme_success'));
         }
     }
 

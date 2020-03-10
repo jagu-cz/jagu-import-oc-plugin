@@ -2,3 +2,5 @@
     - Initialize plugin.
 1.0.2:
     - Remove all existing files option.
+1.0.3:
+    - Import plugins.
