@@ -18,7 +18,7 @@ class ImportPlugin extends \Backend\Classes\Controller
 {
     public $requiredPermissions = ['jagu.import.import'];
 
-    private const FILE_NAME = 'plugin_zip';
+    const FILE_NAME = 'plugin_zip';
 
     /**
      * ImportPlugin constructor.

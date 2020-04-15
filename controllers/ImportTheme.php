@@ -17,9 +17,9 @@ class ImportTheme extends \Backend\Classes\Controller
 {
     public $requiredPermissions = ['jagu.import.import'];
 
-    private const FILE_NAME = 'theme_zip';
-    private const REMOVE_ALL_EXISTING_FILES_SWITCH_NAME = 'remove_all_existing_files';
-    private const EXCLUDE_STATIC_CONTENT_SWITCH_NAME = 'replace_static_pages_content';
+    const FILE_NAME = 'theme_zip';
+    const REMOVE_ALL_EXISTING_FILES_SWITCH_NAME = 'remove_all_existing_files';
+    const EXCLUDE_STATIC_CONTENT_SWITCH_NAME = 'replace_static_pages_content';
 
     public function __construct()
     {
